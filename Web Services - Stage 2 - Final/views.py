@@ -8,11 +8,11 @@ views = Blueprint(__name__, 'views')
 def home():
     ''' Route for home page of demerit calculator. 
 
-    Renders the home template and takes user input on web app, when user submits the information is calculated 
-    using functions from demerit_calculation.py and will flash messages to the web app home page is user submitted
+    Renders the home template and takes user input from web app, information is calculated 
+    using functions from demerit_calculation.py and will flash messages to the web app home page if user submitted
     information is invalid
-
     '''
+    
     if request.method == 'POST':
 
         driving_speed = request.form['driving_speed']
@@ -20,17 +20,11 @@ def home():
 
         validity = validation(request.form['driving_speed'], request.form['speed_limit'])
         
-        if all(validity):
+        if not(validity):
             holiday_period = request.form.get('holiday_period')
             return render_template('calculation.html', calculation=message(get_demerit_points(float(driving_speed), int(speed_limit), holiday_period), driving_speed, speed_limit))
 
-        # Flash Messages
-        elif not(any(validity)):
-            flash('Driving speed must be type int or float. Speed limit must be type int.')
-        elif validity[0] == True:
-            flash('Speed limit must be type int.')
-        else:
-            flash('Driving speed must be type int or float.')
+        flash(validity)
 
     # Default when not method POST
     return render_template('home.html')
