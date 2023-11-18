@@ -23,6 +23,8 @@ imports demerit_calculation.py for calculations regarding user input
 HTML Templates
 very basic html design (CURRENT)
 
+
+
 Version 2
 
 - Updated validity function to return flashed message string for a layer of abstraction - cleaner to read in views.py
