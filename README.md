@@ -1,6 +1,4 @@
 # Ara-Web-App
-1st web app creation
-
 Demerit Point Calculator
 
 Version 1 
