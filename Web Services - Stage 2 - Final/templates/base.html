@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en">
 <html>
-
+{% block home_tag %}    
+<a href="{{url_for('views.home')}}" class="btn btn-1">Home</a>
+{% endblock %}
 <center>
     <head>
         

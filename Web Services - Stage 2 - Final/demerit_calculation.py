@@ -1,4 +1,7 @@
 def get_demerit_points(driving_speed, speed_limit, holiday_period=False):
+    '''Calculates demerit point information, returns tuple of (<True/False> penalty_points)
+    where True/False is wether or not the penalty is mandatory.'''
+
     penalty_points = False
 
     if driving_speed>speed_limit:
@@ -17,22 +20,31 @@ def get_demerit_points(driving_speed, speed_limit, holiday_period=False):
 
 
 def validation(x, y):
-    validity = []
+    '''validates user input from home.html, returns message to flash to user for invalid case, 
+    returns None if inputs are good'''
 
     try:
-        float(x), validity.append(True)
-    except ValueError:    
-        validity.append(False)
+        float(x)
+        validity=True
+    except ValueError:    #Block of code determines wether driving speed entered is able to convert to type float
+        validity=False
+
     try:
-        int(y), validity.append(True)
+        int(y)
+        if validity:
+            return None                                         #Checks if speed limit entered is able to convert to type int
+        return 'Driving speed must be type int or float.'
+    
     except ValueError:
-        validity.append(False)
-
-    return validity
+        if validity:
+            return 'Speed limit must be type int.'
+        return 'Driving speed must be type int or float. Speed limit must be type int.'
 
 def message(x, driving_speed, speed_limit):
+    '''Returns string pertaining to the type of penalty a user is liable for IF liable.'''
+
     if x[1]:
-        if x[0] == True:
+        if x[0]:
             option = 'madatory'
         else:
             option = 'discretional'
