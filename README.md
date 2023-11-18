@@ -23,8 +23,15 @@ imports demerit_calculation.py for calculations regarding user input
 HTML Templates
 very basic html design (CURRENT)
 
+Version 2
+
+- Updated validity function to return flashed message string for a layer of abstraction - cleaner to read in views.py
+
+- Added docstrings to demerit_calculation.py functions
+
+- Added 'Home' button to base template to satisfy requirements
+  - Appears on all html pages except bad_url_path
+
 
 TO WORK ON:
-  - Updated validation function in demerit_calculation.py
-  - Update views.py to follow logically + Displaying information to the succesful calculation html template.
   - Use Bootstrap for better front end design 
